@@ -44,4 +44,9 @@ export PATH=$PATH:$(go env GOPATH)/bin
 echo "Installing Python packages..."
 pip3 install tqdm
 
+# Move the downloaded url_enum.py script to /usr/bin/ and replace any existing one
+echo "Moving url_enum.py to /usr/bin/"
+sudo mv url_enum.py /usr/bin/url_enum.py
+sudo chmod +x /usr/bin/url_enum.py
+
 echo "All required tools and dependencies have been installed."
