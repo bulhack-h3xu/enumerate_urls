@@ -47,9 +47,14 @@ export PATH=$PATH:$(go env GOPATH)/bin
 echo "Installing Python packages..."
 pip3 install tqdm aiofiles
 
-# Move the downloaded url_enum.py script to /usr/bin/ and replace any existing one
-echo "Moving url_enum.py to /usr/bin/"
-sudo mv url_enum.py /usr/bin/url_enum.py
-sudo chmod +x /usr/bin/url_enum.py
+# Check if url_enum.py exists in the current directory
+if [ -f ./url_enum.py ]; then
+    # Move the downloaded url_enum.py script to /usr/bin/ and replace any existing one
+    echo "Moving url_enum.py to /usr/bin/"
+    sudo mv ./url_enum.py /usr/bin/url_enum.py
+    sudo chmod +x /usr/bin/url_enum.py
+else
+    echo "url_enum.py not found in the current directory."
+fi
 
 echo "All required tools and dependencies have been installed."
