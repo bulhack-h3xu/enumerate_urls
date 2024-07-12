@@ -54,6 +54,11 @@ async def filter_urls(input_file, target):
                 else:
                     await without_params.write(line)
 
+async def probe_urls(input_file, output_file):
+    command = f"httpx -l {input_file} -o {output_file} -silent"
+    process = await asyncio.create_subprocess_shell(command)
+    await process.communicate()
+
 async def main(target):
     create_directory(target)
 
@@ -73,6 +78,9 @@ async def main(target):
     await merge_files(["subfinder.txt", "assetfinder.txt", "amass.txt", "waybackurls.txt", "getallurls.txt", "gau.txt", "katana.txt"], "output.txt")
 
     await filter_urls("output.txt", target)
+
+    print("Probing URLs with httpx...")
+    await probe_urls("unique_urls.txt", "live_urls.txt")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='URL and parameter enumeration script for testing the target website.')
