@@ -37,12 +37,15 @@ go install github.com/lc/gau/v2/cmd/gau@latest
 echo "Installing katana..."
 go install github.com/projectdiscovery/katana/cmd/katana@latest
 
+echo "Installing httpx..."
+go install github.com/projectdiscovery/httpx/cmd/httpx@latest
+
 # Add Go binaries to PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Install Python packages
 echo "Installing Python packages..."
-pip3 install tqdm
+pip3 install tqdm aiofiles
 
 # Move the downloaded url_enum.py script to /usr/bin/ and replace any existing one
 echo "Moving url_enum.py to /usr/bin/"
